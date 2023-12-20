@@ -1,6 +1,6 @@
 Name:		texlive-xduts
-Version:	64124
-Release:	2
+Version:	66661
+Release:	1
 Summary:	Xidian University TeX Suite
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/xduts
