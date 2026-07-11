@@ -1,43 +1,25 @@
-Name:		texlive-xduts
-Version:	66661
-Release:	1
+%global tl_name xduts
+%global tl_revision 76924
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	6.2.7.2
+Release:	%{tl_revision}.1
 Summary:	Xidian University TeX Suite
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/xduts
+URL:		https://www.ctan.org/tex-archive/macros/xetex/latex/xduts
 License:	lppl1.3c
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xduts.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xduts.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xduts.source.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/xduts.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/xduts.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/xduts.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
 XDUTS is designed to help Xidian University students use LaTeX
-typesetting efficiently. XDUTS contains a font configuration
-package that meets the school's requirements and can be applied
-to any document class. In addition, there are thesis and thesis
-proposal templates for both undergraduate and postgraduate that
-meet the school's requirements.
+typesetting efficiently. XDUTS contains a font configuration package
+that meets the school's requirements and can be applied to any document
+class. In addition, there are thesis and thesis proposal templates for
+both undergraduate and postgraduate that meet the school's requirements.
 
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%doc %{_texmfdistdir}/source/xelatex/xduts
-%{_texmfdistdir}/tex/xelatex/xduts
-%doc %{_texmfdistdir}/doc/xelatex/xduts
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
